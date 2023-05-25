@@ -33,11 +33,19 @@ def cadastro(matriz):
     telefone = input("Informe seu telefone: ")
     matriz[2].append(telefone)
 
+# Função que associa a um nome um dia da semana para consulta
+# Esse dia é escolhido de forma aleatória pela funçam random
 def cadastra_data_hora(matriz, nome):
     index = matriz[0].index(nome)
     dias_semana = ["segunda", "terça", "quarta", "quinta", "sexta"]
-    dia = random.choice(dias_semana)
-    matriz[3].append(dia)
+    while True: 
+      dia = random.choice(dias_semana) # Escolhe um dia aleatório
+      if dia not in matriz[3]:  # Verifica se o dia ainda não foi associado
+        matriz[3].append(dia)  # Se não for, ele associa e interrompe a função
+        break
+      #Se otamanho da linha de data, for igual o de dias, não existem mais dias disponíveis
+    if len(matriz[3]) == len(dias_semana): 
+        print("Acabaram as vagas da semana,por favor volte na próxima semana!")
 
 def get_consulta(matriz, nome):
     index = matriz[0].index(nome)
